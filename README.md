@@ -1,13 +1,11 @@
 # dask-pregel
 
-A Python implementation of the Pregel distributed programming model
-using [Dask](https://github.com/dask/dask).
+**Experimental** A Python implementation of the Pregel distributed
+programming model using [Dask](https://github.com/dask/dask).
 
-**This is experimental.**
-
-This implementation might be helpful for prototyping or testing
-*Pregel-compatible* algorithms, but not for running it at scale. There
-are a lot of caveats.
+It might be helpful for prototyping or testing *Pregel-compatible*
+algorithms with small graphs, but not for running it at scale. There
+are a lot of caveats (see below).
 
 ## Example: PageRank
 
@@ -52,17 +50,19 @@ array([ 0.13107403,  0.14083991,  0.07424558,  0.12016776,  0.07447663,
 - This relies on an experimental feature introduced in
   Dask/Distributed 1.23.0 (stateful actors).
 
-- It is inefficient. The graph is partitioned among Dask workers
+- It is highly inefficient. The graph is partitioned among Dask workers
   automatically, in a non-optimized way. It would be better to create
   a class for Pregel workers that each handles a bunch of vertices
   rather than let Dask manage each vertex separately.
 
-- I don't have much experience with Pregel and advanced Dask usage,
-  there may be things that I don't know or misunderstand.
+- I'm not very familiar yet with Pregel and I don't have much
+  experience with Dask (advanced usage) so there might be things that
+  I miss or misunderstand.
 
 
 ## See also
 
-- Another Python implementation of Pregel: https://github.com/mnielsen/Pregel
+- Another Python implementation of Pregel (using Python's threading
+  library): https://github.com/mnielsen/Pregel
 - [Some slides](http://people.apache.org/~edwardyoon/documents/pregel.pdf)
   explaining Pregel.
